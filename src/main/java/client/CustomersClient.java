@@ -3,13 +3,11 @@ package client;
 import configuration.FeignConfig;
 import models.Customer;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 // Feign client for Customers Service (via ALB)
 @FeignClient(name = "customers-service", url = "http://internal-bookstore-dev-InternalALB-1706046400.us-east-1.elb.amazonaws.com:3000", configuration = FeignConfig.class)
+@RequestMapping("/customers")
 public interface CustomersClient {
 
     @PostMapping

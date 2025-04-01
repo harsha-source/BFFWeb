@@ -6,8 +6,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @FeignClient(name = "A1", url = "http://internal-bookstore-dev-InternalALB-1706046400.us-east-1.elb.amazonaws.com:3000", configuration = FeignConfig.class)
+@RequestMapping("/books")
 public interface BooksClient {
 //        @GetMapping
 //        Object getAllBooks();
