@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(name = "A1", url = "http://internal-bookstore-dev-InternalALB-1706046400.us-east-1.elb.amazonaws.com:3000", configuration = FeignConfig.class)
-@RequestMapping("/books")
+@FeignClient(name = "A1", url = "http://internal-bookstore-dev-InternalALB-178925506.us-east-1.elb.amazonaws.com:3000/books", configuration = FeignConfig.class)
 public interface BooksClient {
 //        @GetMapping
 //        Object getAllBooks();
