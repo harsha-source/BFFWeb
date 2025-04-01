@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 // Feign client for Customers Service (via ALB)
-@FeignClient(name = "customers-service", url = "http://internal-bookstore-dev-InternalALB-1706046400.us-east-1.elb.amazonaws.com:3000/customers", configuration = FeignConfig.class)
+@FeignClient(name = "customers-service", url = "http://internal-bookstore-dev-InternalALB-1706046400.us-east-1.elb.amazonaws.com:3000", configuration = FeignConfig.class)
 public interface CustomersClient {
 
     @PostMapping
