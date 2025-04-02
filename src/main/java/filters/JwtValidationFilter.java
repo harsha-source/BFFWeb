@@ -48,7 +48,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (!clientType.equals("Web")) {
+        if (!clientType.equals("web")) {
             logger.warning("Invalid X-Client-Type header");
             response.setStatus(HttpStatus.BAD_REQUEST.value());
             response.setContentType("application/json");
