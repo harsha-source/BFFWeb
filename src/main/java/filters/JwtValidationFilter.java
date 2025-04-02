@@ -40,7 +40,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
             return;
         }
 
-        if(!clientType.equals("Web")){
+        if(!clientType.equals("web")){
             response.setStatus(HttpStatus.BAD_REQUEST.value());
             response.setContentType("application/json");
             response.getWriter().write("{\"error\":\"Missing required header: X-Client-Type\"}");
