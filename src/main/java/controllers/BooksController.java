@@ -2,6 +2,7 @@ package controllers;
 
 import client.BooksClient;
 import errors.CustomFeignException;
+import jakarta.validation.Valid;
 import models.Books;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
@@ -29,7 +30,24 @@ public class BooksController {
     public ResponseEntity<Object> addBook(@RequestBody Books book) {
         try {
             Object result = booksClient.addBook(book);
-            return ResponseEntity.ok(result);
+            return ResponseEntity.status(201).body(result);
+        } catch (CustomFeignException e) {
+            try {
+                // Convert the response body to the appropriate format
+                String responseBody = StreamUtils.copyToString(e.getBody().asInputStream(), StandardCharsets.UTF_8);
+                return ResponseEntity.status(e.getStatus()).body(responseBody);
+            } catch (IOException ioException) {
+                // Fallback if we can't read the response body
+                return ResponseEntity.status(e.getStatus()).build();
+            }
+        }
+    }
+
+    @PutMapping("/{isbn}")
+    public ResponseEntity<?> updateBook(@PathVariable String isbn, @RequestBody @Valid Books book) {
+        try {
+            Object result = booksClient.updateBook(isbn, book);
+            return ResponseEntity.status(200).body(result);
         } catch (CustomFeignException e) {
             try {
                 // Convert the response body to the appropriate format

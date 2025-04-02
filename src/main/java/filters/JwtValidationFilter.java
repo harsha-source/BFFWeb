@@ -91,10 +91,6 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                 throw new Exception("Invalid issuer in token");
             }
 
-//                if (!payloadJson.has("exp") || payloadJson.get("exp").asLong() < (System.currentTimeMillis() / 1000)) {
-//                    throw new Exception("Token expired");
-//                }
-
         } catch (Exception e) {
             throw new Exception("Invalid JWT token: " + e.getMessage());
         }
